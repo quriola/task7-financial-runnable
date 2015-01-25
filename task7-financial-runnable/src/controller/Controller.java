@@ -53,6 +53,14 @@ public class Controller extends HttpServlet {
 			CustomerBean customer = new CustomerBean();
 			customer.setUsername("customer");
 			customer.setPassword("abc");
+			customer.setFirstname("First");
+			customer.setLastname("Customer");
+			customer.setAddrL1("5030 Centre Ave");
+			customer.setAddrL2("APT 101");
+			customer.setCity("Pittsburgh");
+			customer.setState("PA");
+			customer.setZip(15213);
+			customer.setCash(1000);
 			customerDAO.create(customer);
 			
 			

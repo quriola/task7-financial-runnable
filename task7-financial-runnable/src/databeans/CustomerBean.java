@@ -11,8 +11,9 @@ public class CustomerBean implements Comparable<CustomerBean>{
 	private String username;
 	private String  hashedPassword = "*";
 	private int     salt           = 0;
-	private String fName;
-	private String lName;
+	private String firstname;
+	
+	private String lastname;
 	private String addrL1;
 	private String addrL2;
 	private String city;
@@ -20,6 +21,22 @@ public class CustomerBean implements Comparable<CustomerBean>{
 	private int zip;
 	private long cash;
 	
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
 	public boolean checkPassword(String password) {
 		return hashedPassword.equals(hash(password));
 	}
@@ -39,18 +56,7 @@ public class CustomerBean implements Comparable<CustomerBean>{
 	public String  getHashedPassword() { return hashedPassword; }
 	public int     getSalt()           { return salt;           }
 
-	public String getfName() {
-		return fName;
-	}
-	public void setfName(String fName) {
-		this.fName = fName;
-	}
-	public String getlName() {
-		return lName;
-	}
-	public void setlName(String lName) {
-		this.lName = lName;
-	}
+
 	public String getAddrL1() {
 		return addrL1;
 	}
