@@ -19,9 +19,11 @@ import javax.servlet.http.HttpSession;
 import org.genericdao.RollbackException;
 import org.mybeans.form.FormBeanException;
 
+import model.CustomerDAO;
 import model.FavoriteDAO;
 import model.Model;
 import model.UserDAO;
+import databeans.CustomerBean;
 import databeans.FavoriteBean;
 import databeans.User;
 
@@ -31,6 +33,8 @@ public class Controller extends HttpServlet {
 	public void init() throws ServletException {
 		Model model = new Model(getServletConfig());
 
+		Action.add(new CusLoginAction(model));
+        
 		Action.add(new ChangePwdAction(model));
 		Action.add(new ClickAction(model));
 		Action.add(new LoginAction(model));
@@ -40,50 +44,18 @@ public class Controller extends HttpServlet {
 		Action.add(new RemoveAction(model));
 		Action.add(new UploadAction(model));
 		Action.add(new ViewAction(model));
-		UserDAO userDAO = model.getUserDAO();
-		FavoriteDAO favoriteDAO = model.getFavoriteDAO();
+//		UserDAO userDAO = model.getUserDAO();
+//		FavoriteDAO favoriteDAO = model.getFavoriteDAO();
+		CustomerDAO customerDAO = model.getCustomerDAO();
 		try {
 			// Create the user bean
 
-			User user = new User();
-			user.setEmail("default1@gmail.com");
-			user.setFirstName("Default1");
-			user.setLastName("AAA");
-			user.setPassword("abc");
-			userDAO.create(user);
-
-			user.setEmail("default2@gmail.com");
-			user.setFirstName("Default2");
-			user.setLastName("BBB");
-			user.setPassword("abc");
-			userDAO.create(user);
-
-			user.setEmail("default3@gmail.com");
-			user.setFirstName("Default3");
-			user.setLastName("CCC");
-			user.setPassword("abc");
-			userDAO.create(user);
-
-			FavoriteBean favorite = new FavoriteBean();
-
-			for (int i = 1; i < 4; i++) {
-				favorite.setUser_id(userDAO.read("default" + i + "@gmail.com")
-						.getId());
-
-				favorite.setUrl("www.google.com");
-				favorite.setComment("Search Engine");
-				favoriteDAO.create(favorite);
-				favorite.setUrl("www.imdb.com");
-				favorite.setComment("Movie Website");
-				favoriteDAO.create(favorite);
-				favorite.setUrl("www.netflix.com");
-				favorite.setComment("Video Site");
-				favoriteDAO.create(favorite);
-				favorite.setUrl("www.gamespot.com");
-				favorite.setComment("Game Site");
-				favoriteDAO.create(favorite);
-
-			}
+			CustomerBean customer = new CustomerBean();
+			customer.setUsername("customer");
+			customer.setPassword("abc");
+			customerDAO.create(customer);
+			
+			
 		} catch (RollbackException e) {
 
 		}
@@ -117,8 +89,7 @@ public class Controller extends HttpServlet {
 
 		// System.out.println("servletPath="+servletPath+" requestURI="+request.getRequestURI()+"  user="+user);
 
-		if (action.equals("register.do") || action.equals("login.do")
-				|| action.equals("view.do") || action.equals("click.do")) {
+		if (action.equals("cuslogin.do")) {
 			// Allow these actions without logging in
 			return Action.perform(action, request);
 		}

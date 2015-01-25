@@ -44,17 +44,17 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="panel-998277">
 						<p>
-							</p><form class="form-horizontal" role="form">
+							</p><form class="form-horizontal"  method="post" action="cuslogin.do">
 				<div class="form-group">
 					 <label for="inputEmail3" class="col-sm-2 control-label"><font size="3" face="Verdana">Username</font></label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail3">
+						<input type="text" name="userName" class="form-control" id="inputEmail3">
 					</div>
 				</div>
 				<div class="form-group">
 					 <label for="inputPassword3" class="col-sm-2 control-label"><font size="3" face="Verdana">Password</font></label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword3">
+						<input type="password" name="password" class="form-control" id="inputPassword3">
 					</div>
 				</div>
 				<div class="form-group">
@@ -64,16 +64,20 @@
 						</div>
 					</div>
 				</div>
+				<div class="modal-footer">
+							 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button> -->
+							 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> <input type="submit" class="btn btn-default" name="button" value="Login"> 
+						</div>
 			</form>
 						<p></p>
 					</div>
 					<div class="tab-pane" id="panel-797162">
 						<p>
-							</p><form class="form-horizontal" role="form">
-				<div class="form-group">
+							</p><form class="form-horizontal"  method="post" action="emplogin.do">
+						<div class="form-group">
 					 <label for="inputEmail3" class="col-sm-2 control-label"><font size="3" face="Verdana">Username</font></label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail3">
+						<input type="text" class="form-control" id="inputEmail3">
 					</div>
 				</div>
 				<div class="form-group">
@@ -89,16 +93,17 @@
 						</div>
 					</div>
 				</div>
+				<div class="modal-footer">
+							 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button> -->
+							 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> <input type="submit" class="btn btn-default" name="button" value="Login"> 
+						</div>
 			</form>
 						<p></p>
 					</div>
 				</div>
 			</div>
 						</div>
-						<div class="modal-footer">
-							 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button> -->
-							 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> <button type="button" class="btn btn-primary">Login</button>
-						</div>
+						
 					</div>
 				</div>				
 			</div>

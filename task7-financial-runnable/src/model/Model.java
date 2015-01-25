@@ -15,7 +15,8 @@ import org.genericdao.DAOException;
 public class Model {
 	private FavoriteDAO favoriteDAO;
 	private UserDAO  userDAO;
-
+	private CustomerDAO customerDAO;
+	
 	public Model(ServletConfig config) throws ServletException {
 		try {
 			String jdbcDriver = config.getInitParameter("jdbcDriverName");
@@ -24,6 +25,8 @@ public class Model {
 			ConnectionPool pool = new ConnectionPool(jdbcDriver, jdbcURL);
 			userDAO  = new UserDAO("jiayiz_user", pool);
 			favoriteDAO = new FavoriteDAO("jiayiz_favorite", pool);
+			customerDAO  = new CustomerDAO("customer", pool);
+			
 		} catch (DAOException e) {
 			throw new ServletException(e);
 		}
@@ -31,4 +34,6 @@ public class Model {
 	
 	public FavoriteDAO getFavoriteDAO() { return favoriteDAO; }
 	public UserDAO  getUserDAO()  { return userDAO;  }
+	public CustomerDAO getCustomerDAO() { return customerDAO; }
+	
 }
