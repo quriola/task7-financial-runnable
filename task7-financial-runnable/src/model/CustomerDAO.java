@@ -54,4 +54,21 @@ public class CustomerDAO extends GenericDAO<CustomerBean> {
 			if (Transaction.isActive()) Transaction.rollback();
 		}
 	}
+	public void updateCash(int customerId, long amount) throws RollbackException {
+        try {
+        	Transaction.begin();
+			CustomerBean customer = read(customerId);
+			
+			if (customer == null) {
+				throw new RollbackException("User with Id "+customerId+" no longer exists");
+			}
+			
+			customer.setCash(customer.getCash()+amount);
+			
+			update(customer);
+			Transaction.commit();
+		} finally {
+			if (Transaction.isActive()) Transaction.rollback();
+		}
+	}
 }

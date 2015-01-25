@@ -37,7 +37,7 @@ public class TransactionDAO extends GenericDAO<TransactionBean>{
 		// TODO Auto-generated method stub
 		 try {
 		    	Transaction.begin();
-		    	transaction.setTransaction_id(0);
+		    	transaction.setTransaction_type(0);;
 		    	createAutoIncrement(transaction);
 		    	Transaction.commit();
 				

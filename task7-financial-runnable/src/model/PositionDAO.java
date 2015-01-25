@@ -24,20 +24,22 @@ public class PositionDAO extends GenericDAO<PositionBean>{
 		return positions;
 	}
 	
-	public void create(PositionBean newPosition) throws RollbackException {
+	public void update(PositionBean newPosition) throws RollbackException {
 		try {
 			Transaction.begin();
 			int curCus = newPosition.getCustomer_id();
 			int curFund = newPosition.getFund_id();
 						
-			PositionBean[] DupPositions = match(MatchArg.equals("customerId",curCus), MatchArg.equals("fundId",curFund));
+			PositionBean[] DupPositions = match(MatchArg.equals("customer_id",curCus), MatchArg.equals("fund_id",curFund));
 	        if(DupPositions!=null && DupPositions.length>0) {
 	        	for(PositionBean pos:DupPositions){
 	        		pos.setShares(pos.getShares() + newPosition.getShares());
 					update(pos);
 	        	}
 	        }	
+	        else {
 			create(newPosition);
+	        }
 			Transaction.commit();
 		}		
 		finally {
