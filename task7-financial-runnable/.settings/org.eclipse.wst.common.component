@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="task7-financial-runnable">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="context-root" value="task7-financial-runnable"/>
+        <property name="java-output-path" value="/task7-financial-runnable/build/classes"/>
+    </wb-module>
+</project-modules>
