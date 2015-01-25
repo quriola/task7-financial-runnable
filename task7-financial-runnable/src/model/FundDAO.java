@@ -33,11 +33,11 @@ public class FundDAO extends GenericDAO<FundBean> {
 		}
 	}
 
-	public FundBean[] getFund(int id) throws RollbackException {
-
-		FundBean[] funds = match(MatchArg.equals("id", id));
-		return funds;
-	}
+//	public FundBean[] getFund(int id) throws RollbackException {
+//
+//		FundBean[] funds = match(MatchArg.equals("id", id));
+//		return funds;
+//	}
 //Jiayi added getFundList
 	public FundBean[] getFundList() throws RollbackException {
 		FundBean[] fundList = match();

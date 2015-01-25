@@ -156,7 +156,7 @@
 					</div>
 					<div id="panel-element-236921" class="panel-collapse">
 						<div class="panel-body">
-							<a  href="#">Buy Fund</a>						
+							<a  href="buyfund.do">Buy Fund</a>						
 						</div>
 						<div class="panel-body">
 							<a  href="#">Sell Fund</a>						
@@ -179,7 +179,7 @@
 					<div class="panel-heading">
 						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-872653" href="#panel-element-236921">Financial Operation</a>
 					</div>
-					<div id="panel-element-236921" class="panel-collapse collapse">
+					<div id="panel-element-236921" class="panel-collapse">
 						<div class="panel-body">
 							<a  href="#">Deposit Check  </a>						
 						</div>
@@ -193,7 +193,7 @@
 					<div class="panel-heading">
 						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-872653" href="#panel-element-236922">Account Operation</a>
 					</div>
-					<div id="panel-element-236922" class="panel-collapse collapse">
+					<div id="panel-element-236922" class="panel-collapse">
 						<div class="panel-body">
 							<a  href="#">Create Employee Account </a>						
 						</div>
@@ -210,7 +210,7 @@
 					<div class="panel-heading">
 						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-872653" href="#panel-element-236923">My Account</a>
 					</div>
-					<div id="panel-element-236923" class="panel-collapse collapse">
+					<div id="panel-element-236923" class="panel-collapse">
 						<div class="panel-body">
 							<a  href="#">Change Password</a>						
 						</div>

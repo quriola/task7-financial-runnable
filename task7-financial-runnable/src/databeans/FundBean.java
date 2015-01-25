@@ -3,7 +3,7 @@ package databeans;
 import org.genericdao.PrimaryKey;
 
 @PrimaryKey("id")
-public class FundBean {
+public class FundBean  implements Comparable<FundBean>{
 	private int    id;
 	private String name;
 	private String symbol;
@@ -16,4 +16,8 @@ public class FundBean {
 	public void   setName(String s)      { name = s;            }
 	public void   setSymbol(String s)    { symbol = s;       }
 
+	public int compareTo(FundBean o) {
+		// TODO Auto-generated method stub
+		return Integer.compare(id, o.id);
+	}
 }

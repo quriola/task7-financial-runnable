@@ -21,9 +21,11 @@ import org.mybeans.form.FormBeanException;
 
 import model.CustomerDAO;
 import model.EmployeeDAO;
+import model.FundDAO;
 import model.Model;
 import databeans.CustomerBean;
 import databeans.EmployeeBean;
+import databeans.FundBean;
 
 @SuppressWarnings("serial")
 public class Controller extends HttpServlet {
@@ -34,8 +36,10 @@ public class Controller extends HttpServlet {
 		Action.add(new CusLoginAction(model));
 		Action.add(new EmpLoginAction(model));
 		Action.add(new LogoutAction(model));
+		Action.add(new BuyFundAction(model));
 		CustomerDAO customerDAO = model.getCustomerDAO();
 		EmployeeDAO employeeDAO = model.getEmployeeDAO();
+		FundDAO fundDAO = model.getFundDAO();
 		
 		try {
 			// Create the user bean
@@ -60,6 +64,15 @@ public class Controller extends HttpServlet {
 			employee.setLastname("Employee");
 			
 			employeeDAO.create(employee);
+			
+			FundBean fund = new FundBean();
+			
+			for (int i=1; i<11; i++){
+			fund.setName("Fund No." + i);
+			fund.setSymbol("Fund No." + i + " is a very good fund");
+			
+			fundDAO.create(fund);
+			}
 			
 		} catch (RollbackException e) {
 			e.printStackTrace();

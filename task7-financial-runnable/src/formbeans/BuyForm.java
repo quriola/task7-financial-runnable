@@ -6,13 +6,13 @@ import java.util.List;
 import org.mybeans.form.FormBean;
 
 public class BuyForm extends FormBean {
-	private String fundName;
+	private String fundId;
 	private long amount;
 	
-	public String getFundName() { return fundName; }
+	public String getFundId() { return fundId; }
 	public long getAmount() { return amount; }
 	
-	public void setFundName(String s) {fundName = s;}
+	public void setFundId(String s) {fundId = s;}
 	public void setAmount(long l) { amount = l;}
 	
 	public List<String> getValidationErrors() {
