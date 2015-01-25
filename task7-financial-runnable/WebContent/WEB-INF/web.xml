@@ -31,7 +31,7 @@
     
 
     <welcome-file-list>
-        <welcome-file>   manage.do   </welcome-file>
+        <welcome-file>   cuslogin.do   </welcome-file>
     </welcome-file-list>
 
 </web-app>

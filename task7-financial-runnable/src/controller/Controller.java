@@ -20,12 +20,10 @@ import org.genericdao.RollbackException;
 import org.mybeans.form.FormBeanException;
 
 import model.CustomerDAO;
-import model.FavoriteDAO;
+import model.EmployeeDAO;
 import model.Model;
-import model.UserDAO;
 import databeans.CustomerBean;
-import databeans.FavoriteBean;
-import databeans.User;
+import databeans.EmployeeBean;
 
 @SuppressWarnings("serial")
 public class Controller extends HttpServlet {
@@ -34,19 +32,11 @@ public class Controller extends HttpServlet {
 		Model model = new Model(getServletConfig());
 
 		Action.add(new CusLoginAction(model));
-        
-		Action.add(new ChangePwdAction(model));
-		Action.add(new ClickAction(model));
-		Action.add(new LoginAction(model));
+		Action.add(new EmpLoginAction(model));
 		Action.add(new LogoutAction(model));
-		Action.add(new ManageAction(model));
-		Action.add(new RegisterAction(model));
-		Action.add(new RemoveAction(model));
-		Action.add(new UploadAction(model));
-		Action.add(new ViewAction(model));
-//		UserDAO userDAO = model.getUserDAO();
-//		FavoriteDAO favoriteDAO = model.getFavoriteDAO();
 		CustomerDAO customerDAO = model.getCustomerDAO();
+		EmployeeDAO employeeDAO = model.getEmployeeDAO();
+		
 		try {
 			// Create the user bean
 
@@ -63,9 +53,16 @@ public class Controller extends HttpServlet {
 			customer.setCash(1000);
 			customerDAO.create(customer);
 			
+			EmployeeBean employee = new EmployeeBean();
+			employee.setUsername("admin");
+			employee.setPassword("abc");
+			employee.setFirstname("First");
+			employee.setLastname("Employee");
+			
+			employeeDAO.create(employee);
 			
 		} catch (RollbackException e) {
-
+			e.printStackTrace();
 		}
 
 	}
@@ -92,19 +89,21 @@ public class Controller extends HttpServlet {
 	private String performTheAction(HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
 		String servletPath = request.getServletPath();
-		User user = (User) session.getAttribute("user");
+		CustomerBean customer = (CustomerBean) session.getAttribute("customer");
+		EmployeeBean employee = (EmployeeBean) session.getAttribute("employee");
+		
 		String action = getActionName(servletPath);
 
 		// System.out.println("servletPath="+servletPath+" requestURI="+request.getRequestURI()+"  user="+user);
 
-		if (action.equals("cuslogin.do")) {
+		if (action.equals("cuslogin.do") || action.equals("emplogin.do")) {
 			// Allow these actions without logging in
 			return Action.perform(action, request);
 		}
 
-		if (user == null) {
+		if (customer == null && employee == null) {
 			// If the user hasn't logged in, direct him to the login page
-			return Action.perform("login.do", request);
+			return Action.perform("cuslogin.do", request);
 		}
 
 		// Let the logged in user run his chosen action

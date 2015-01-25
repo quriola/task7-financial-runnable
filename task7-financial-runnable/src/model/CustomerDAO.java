@@ -3,7 +3,6 @@ package model;
 import java.util.Arrays;
 
 import databeans.CustomerBean;
-import databeans.User;
 
 import org.genericdao.*;
 

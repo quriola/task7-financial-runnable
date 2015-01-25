@@ -22,11 +22,11 @@ public class LogoutAction extends Action {
 	public String getName() { return "logout.do"; }
 
 	public String perform(HttpServletRequest request) {
-        
-		HttpSession session = request.getSession(false);
-        session.setAttribute("user",null);
-
-		request.setAttribute("message","You are now logged out");
-        return "success.jsp";
+		
+		HttpSession session = request.getSession();
+        session.setAttribute("customer",null);
+        session.setAttribute("employee",null);
+        //request.setAttribute("message","You are now logged out");
+        return "login.jsp";
     }
 }

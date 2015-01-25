@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import model.CustomerDAO;
+import model.EmployeeDAO;
 import model.Model;
 
 import org.genericdao.RollbackException;
@@ -14,19 +15,20 @@ import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
 import databeans.CustomerBean;
+import databeans.EmployeeBean;
 import formbeans.CusLoginForm;
 
-public class CusLoginAction extends Action {
+public class EmpLoginAction extends Action {
 	private FormBeanFactory<CusLoginForm> formBeanFactory = FormBeanFactory.getInstance(CusLoginForm.class);
 	
-	private CustomerDAO customerDAO;
+	private EmployeeDAO employeeDAO;
 	
-	public CusLoginAction(Model model) {
-		customerDAO = model.getCustomerDAO();
+	public EmpLoginAction(Model model) {
+		employeeDAO = model.getEmployeeDAO();
 	}
 	
 	public String getName() {
-		return "cuslogin.do";
+		return "emplogin.do";
 	}
 	
 	public String perform(HttpServletRequest request) {
@@ -35,8 +37,8 @@ public class CusLoginAction extends Action {
 		
 		try {
 			HttpSession session = request.getSession();
-			if (session.getAttribute("customer") != null)
-			return "viewAccountByCus.jsp";
+			if (session.getAttribute("employee") != null)
+			return "viewAccountByEmp.jsp";
 			CusLoginForm form = formBeanFactory.create(request);
 			request.setAttribute("form",form);
 			
@@ -47,30 +49,30 @@ public class CusLoginAction extends Action {
 			
 			errors.addAll(form.getValidationErrors());
 			if(errors.size() != 0) {
-				System.out.print("error");
+				System.out.print(errors);
 				
 				return "login.jsp";
 			}
 			
-			CustomerBean customer = customerDAO.read(form.getUserName());
+			EmployeeBean employee = employeeDAO.read(form.getUserName());
 			System.out.print("username:"+form.getUserName());
-			if(customer == null) {
+			if(employee == null) {
 				System.out.print("Username not found");
 				
 				errors.add("Username not found");
 				return "login.jsp";
 			}
 			
-			if(!customer.checkPassword(form.getPassword())) {
+			if(!employee.checkPassword(form.getPassword())) {
 				System.out.print("Incorrect password");
 				
 				errors.add("Incorrect password");
 				return "login.jsp";
 			}
 			
-			session.setAttribute("customer",customer);
+			session.setAttribute("employee",employee);
 			System.out.print("good!");
-			return "viewAccountByCus.jsp";
+			return "viewAccountByEmp.jsp";
 		} catch (RollbackException e) {
 			errors.add(e.getMessage());
 			return "error.jsp";
